@@ -2,7 +2,7 @@
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
-import UserProfile from './components/UserProfile';
+import UserProfile from './components/UserProfile'; // 👈 Add this line
 
 function App() {
   return (
@@ -18,4 +18,6 @@ function App() {
     </div>
   );
 }
+
 export default App;
+
