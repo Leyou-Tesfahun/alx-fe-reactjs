@@ -1,4 +1,5 @@
 // src/ProfilePage.jsx
+// ProfilePage.jsx
 import UserInfo from './UserInfo';
 
 function ProfilePage() {
