@@ -1,3 +1,4 @@
+import UserProfile from './components/UserProfile';
 const UserProfile = (props) => {
   return (
     <div className="user-profile">
