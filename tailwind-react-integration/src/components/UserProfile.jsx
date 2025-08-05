@@ -20,7 +20,8 @@ const UserProfile = ({ name, age, bio, avatarUrl }) => {
       )}
       <h2
         className="text-lg sm:text-lg md:text-xl font-semibold text-center
-                   hover:text-blue-500 transition-colors duration-300"
+                   hover:text-blue-500 transition-colors duration-300
+                   text-blue-800 my-4"
       >
         {name}
       </h2>
