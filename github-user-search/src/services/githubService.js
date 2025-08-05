@@ -1,6 +1,7 @@
 // src/services/githubService.js
 import axios from 'axios';
 
+// Function to fetch user data from GitHub based on search parameters
 export const fetchUserData = async (username, location, minRepos) => {
   let query = `q=${username}`;
 
@@ -14,6 +15,11 @@ export const fetchUserData = async (username, location, minRepos) => {
 
   const url = `https://api.github.com/search/users?${query}`;
 
-  const response = await axios.get(url);
-  return response.data.items;
+  try {
+    const response = await axios.get(url);
+    return response.data.items;
+  } catch (error) {
+    console.error("GitHub API Error:", error);
+    throw error;
+  }
 };
