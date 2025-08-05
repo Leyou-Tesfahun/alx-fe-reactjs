@@ -8,7 +8,8 @@ const UserProfile = ({ name, age, bio, avatarUrl }) => {
         <img
           src={avatarUrl}
           alt={`${name}'s avatar`}
-          className="w-24 h-24 sm:w-24 sm:h-24 md:w-36 md:h-36 rounded-full mx-auto mb-4"
+          className="w-24 h-24 sm:w-24 sm:h-24 md:w-36 md:h-36 rounded-full mx-auto mb-4
+                     hover:scale-110 transition-transform duration-300 ease-in-out"
         />
       )}
       <h2 className="text-lg sm:text-lg md:text-xl font-semibold text-center">
