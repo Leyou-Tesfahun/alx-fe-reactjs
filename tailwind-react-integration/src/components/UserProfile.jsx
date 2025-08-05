@@ -25,8 +25,8 @@ const UserProfile = ({ name, age, bio, avatarUrl }) => {
       >
         {name}
       </h2>
-      <p className="text-sm sm:text-sm md:text-base text-center mt-2">Age: {age}</p>
-      <p className="text-sm sm:text-sm md:text-base text-center mt-1">{bio}</p>
+      <p className="text-gray-600 text-sm sm:text-sm md:text-base text-center mt-2">Age: {age}</p>
+      <p className="text-gray-600 text-sm sm:text-sm md:text-base text-center mt-1">{bio}</p>
     </div>
   );
 };
