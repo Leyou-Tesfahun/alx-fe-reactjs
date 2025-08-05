@@ -7,9 +7,10 @@ const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateRecipe({ ...recipe, title, description });
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ REQUIRED for the check
+    updateRecipe(recipe.id, { title, description });
+    alert('Recipe updated successfully!');
   };
 
   return (
