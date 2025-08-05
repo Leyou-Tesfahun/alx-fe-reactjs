@@ -1,10 +1,12 @@
-import AddRecipeForm from './components/AddRecipeForm';
+// src/App.jsx
+import React from 'react';
 import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
 
 function App() {
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
-      <h1>🍽️ Recipe Sharing App</h1>
+    <div>
+      <h1>Recipe Sharing App</h1>
       <AddRecipeForm />
       <RecipeList />
     </div>
@@ -12,4 +14,3 @@ function App() {
 }
 
 export default App;
-
