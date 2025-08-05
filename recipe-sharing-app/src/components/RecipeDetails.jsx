@@ -17,7 +17,10 @@ const RecipeDetails = () => {
   return (
     <div>
       <h1>{recipe.title}</h1>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* ✅ Explicitly show recipe.id */}
       <p>{recipe.description}</p>
+
+      {/* Optional: Also pass recipeId explicitly if needed */}
       <EditRecipeForm recipe={recipe} />
       <DeleteRecipeButton recipeId={recipeId} />
     </div>
