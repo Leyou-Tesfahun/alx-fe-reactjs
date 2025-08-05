@@ -4,9 +4,10 @@ import React from 'react';
 const UserProfile = ({ name, age, bio, avatarUrl }) => {
   return (
     <div
-      className="bg-white shadow rounded-lg mx-auto
+      className="bg-gray-100 shadow-lg rounded-lg mx-auto
                  p-4 sm:p-4 md:p-8
                  max-w-xs sm:max-w-xs md:max-w-sm
+                 my-20
                  hover:shadow-xl transition-shadow duration-300 ease-in-out"
     >
       {avatarUrl && (
@@ -30,3 +31,4 @@ const UserProfile = ({ name, age, bio, avatarUrl }) => {
 };
 
 export default UserProfile;
+
