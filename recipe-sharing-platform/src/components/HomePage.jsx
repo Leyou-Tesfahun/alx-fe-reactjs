@@ -1,9 +1,17 @@
 // src/components/HomePage.jsx
-import React from 'react';
-import { Link } from 'react-router-dom'; // ✅ This import is required
-import recipes from '../data.json'; // Make sure this points to your data file
+// src/components/HomePage.jsx
+import React, { useState, useEffect } from 'react'; // ✅ Required hooks
+import { Link } from 'react-router-dom'; // ✅ For navigation
+import recipesData from '../data.json'; // ✅ Assuming data.json is at src/data.json
 
 function HomePage() {
+  const [recipes, setRecipes] = useState([]); // ✅ Local state for recipes
+
+  useEffect(() => {
+    // Simulate fetching data (could be replaced with real API)
+    setRecipes(recipesData);
+  }, []);
+
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       {recipes.map((recipe) => (
@@ -23,4 +31,3 @@ function HomePage() {
 }
 
 export default HomePage;
-
