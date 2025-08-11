@@ -1,19 +1,17 @@
 // src/components/HomePage.jsx
-// src/components/HomePage.jsx
-import React, { useState, useEffect } from 'react'; // ✅ Required hooks
-import { Link } from 'react-router-dom'; // ✅ For navigation
-import recipesData from '../data.json'; // ✅ Assuming data.json is at src/data.json
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import recipesData from '../data.json';
 
 function HomePage() {
-  const [recipes, setRecipes] = useState([]); // ✅ Local state for recipes
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // Simulate fetching data (could be replaced with real API)
     setRecipes(recipesData);
   }, []);
 
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {recipes.map((recipe) => (
         <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
           <div className="bg-white rounded shadow p-4 hover:shadow-lg transition cursor-pointer">
