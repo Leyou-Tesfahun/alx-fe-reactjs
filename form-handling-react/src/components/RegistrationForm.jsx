@@ -1,68 +1,69 @@
 import { useState } from "react";
 
-function RegistrationForm() {
-  // Step 1: Create state variables for each input
+export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
-  // Step 2: Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    let validationErrors = {};
 
-    if (!username || !email || !password) {
-      alert("All fields are required!");
-      return;
+    if (!username) {
+      validationErrors.username = "Username is required";
+    }
+    if (!email) {
+      validationErrors.email = "Email is required";
+    }
+    if (!password) {
+      validationErrors.password = "Password is required";
     }
 
-    // Simulate API call
-    console.log("User registered:", { username, email, password });
-    alert(`User ${username} registered successfully!`);
+    // ✅ store errors if any
+    setErrors(validationErrors);
 
-    // Clear form
-    setUsername("");
-    setEmail("");
-    setPassword("");
+    // ✅ only proceed if no errors
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Form submitted successfully:", { username, email, password });
+      // simulate API call
+      alert("Registration successful!");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Controlled Registration Form</h2>
-
       <div>
-        <label>Username:</label>
+        <label>Username: </label>
         <input
           type="text"
-          value={username} // ✅ controlled input
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter username"
         />
+        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
       </div>
 
       <div>
-        <label>Email:</label>
+        <label>Email: </label>
         <input
           type="email"
-          value={email} // ✅ controlled input
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter email"
         />
+        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
       </div>
 
       <div>
-        <label>Password:</label>
+        <label>Password: </label>
         <input
           type="password"
-          value={password} // ✅ controlled input
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter password"
         />
+        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
       </div>
 
       <button type="submit">Register</button>
     </form>
   );
 }
-
-export default RegistrationForm;
-
