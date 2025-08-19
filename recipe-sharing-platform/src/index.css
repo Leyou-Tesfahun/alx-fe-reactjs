@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 100, 108, 255;
+    --color-secondary: 83, 91, 242;
+  }
+
+  /* Light mode */
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color: rgba(255, 255, 255, 0.87);
+      background-color: #242424;
+    }
+  }
+
+  body {
+    @apply min-h-screen flex place-items-center;
+    min-width: 320px;
+  }
+
+  a {
+    @apply font-medium text-[#646cff] no-underline;
+    &:hover {
+      @apply text-[#535bf2];
+    }
+  }
+
+  h1 {
+    @apply text-5xl leading-[1.1];
+  }
+
+  button {
+    @apply rounded-lg border border-transparent px-6 py-3 text-base font-medium font-sans;
+    @apply bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900;
+    @apply transition-[border-color] duration-300;
+    &:hover {
+      @apply border-[#646cff];
+    }
+    &:focus, &:focus-visible {
+      @apply outline outline-4 outline-[#646cff];
+    }
+  }
+}
+
+/* Custom animation for React logo */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}

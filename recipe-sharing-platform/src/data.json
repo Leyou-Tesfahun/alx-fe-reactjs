@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb",
+    "ingredients": [
+      "400g spaghetti",
+      "200g pancetta or guanciale, diced",
+      "4 large eggs",
+      "50g pecorino cheese, grated",
+      "50g parmesan, grated",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil and cook spaghetti according to package instructions.",
+      "While pasta cooks, fry pancetta in a large pan until crispy.",
+      "In a bowl, whisk eggs and mix in grated cheeses and plenty of black pepper.",
+      "Drain pasta, reserving some cooking water, and immediately add to the pancetta.",
+      "Remove from heat and quickly stir in the egg mixture, creating a creamy sauce.",
+      "Add pasta water as needed to loosen the sauce.",
+      "Serve immediately with extra grated cheese and pepper."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "150ml yogurt",
+      "2 tbsp tikka masala paste",
+      "1 onion, finely chopped",
+      "2 garlic cloves, crushed",
+      "400g can chopped tomatoes",
+      "100ml double cream",
+      "Fresh coriander to serve"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and 1 tbsp tikka paste for at least 1 hour.",
+      "Grill or fry chicken until lightly charred and cooked through.",
+      "In a separate pan, fry onion and garlic until soft.",
+      "Add remaining tikka paste and cook for 1 minute.",
+      "Add tomatoes and simmer for 10 minutes.",
+      "Stir in cream and cooked chicken, simmer for 5 more minutes.",
+      "Garnish with fresh coriander and serve with rice or naan."
+    ]
+  }
+]
