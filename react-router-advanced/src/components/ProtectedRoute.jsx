@@ -1,14 +1,13 @@
 import { Navigate } from "react-router-dom";
-
-// Simulated authentication
-const isAuthenticated = () => {
-  return localStorage.getItem("auth") === "true"; // set localStorage "auth" to true to simulate login
-};
+import useAuth from "../hooks/useAuth";
 
 export default function ProtectedRoute({ children }) {
-  if (!isAuthenticated()) {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
     alert("You must be logged in to access this page!");
     return <Navigate to="/" />;
   }
+
   return children;
 }
