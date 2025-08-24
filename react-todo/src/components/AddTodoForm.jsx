@@ -12,14 +12,24 @@ const AddTodoForm = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-todo-form">
+    <form onSubmit={handleSubmit} className="add-todo-form" data-testid="todo-form">
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add a new task..."
+        role="textbox"
+        aria-label="Add a new task"
+        data-testid="todo-input"
       />
-      <button type="submit">Add Todo</button>
+      <button 
+        type="submit" 
+        role="button" 
+        aria-label="Add todo"
+        data-testid="add-todo-button"
+      >
+        Add Todo
+      </button>
     </form>
   );
 };
