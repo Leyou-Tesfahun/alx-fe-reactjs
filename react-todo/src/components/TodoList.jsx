@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
+import AddTodoForm from './AddTodoForm';
+import TodoItem from './TodoItem';
 
-function TodoList() {
+const TodoList = () => {
   const [todos, setTodos] = useState([
     { id: 1, text: 'Learn React', completed: false },
-    { id: 2, text: 'Build Todo App', completed: false },
+    { id: 2, text: 'Build a Todo App', completed: true },
   ]);
-  const [newTodo, setNewTodo] = useState('');
 
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (!newTodo.trim()) return;
-    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-    setNewTodo('');
+  const addTodo = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text: text,
+      completed: false
+    };
+    setTodos([...todos, newTodo]);
   };
 
   const toggleTodo = (id) => {
-    setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo));
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
   };
 
   const deleteTodo = (id) => {
@@ -23,29 +28,20 @@ function TodoList() {
   };
 
   return (
-    <div>
-      <h1>Todo List</h1>
-      <form onSubmit={addTodo}>
-        <input 
-          type="text" 
-          value={newTodo} 
-          onChange={(e) => setNewTodo(e.target.value)} 
-          placeholder="Add new todo" 
-        />
-        <button type="submit">Add</button>
-      </form>
-      <ul>
+    <div className="todo-list">
+      <AddTodoForm onAdd={addTodo} />
+      <ul style={{ listStyle: 'none', padding: 0 }}>
         {todos.map(todo => (
-          <li key={todo.id} 
-              onClick={() => toggleTodo(todo.id)}
-              style={{ textDecoration: todo.completed ? 'line-through' : 'none', cursor: 'pointer' }}>
-            {todo.text} 
-            <button onClick={(e) => { e.stopPropagation(); deleteTodo(todo.id); }}>Delete</button>
-          </li>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+          />
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default TodoList;
