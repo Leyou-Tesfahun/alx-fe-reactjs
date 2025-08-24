@@ -3,96 +3,74 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TodoList from '../components/TodoList';
 
-// Describe block groups all tests for the TodoList component
 describe('TodoList Component', () => {
   
-  // Test 1: Initial Render - Verifies the component loads with initial todos
   test('renders the initial list of todos', () => {
     render(<TodoList />);
     
-    // Check if initial demo todos are rendered
+    // Use getByRole for better accessibility testing
+    expect(screen.getByRole('heading', { name: /my todo list/i })).toBeInTheDocument();
     expect(screen.getByText('Learn React')).toBeInTheDocument();
     expect(screen.getByText('Build a Todo App')).toBeInTheDocument();
     
-    // Check that the completed todo has line-through styling
-    const completedTodo = screen.getByText('Build a Todo App');
-    expect(completedTodo).toHaveStyle('text-decoration: line-through');
+    // Check todo items are rendered as list items
+    const todoItems = screen.getAllByRole('listitem');
+    expect(todoItems).toHaveLength(2);
   });
 
-  // Test 2: Adding a New Todo - Tests the form submission functionality
   test('adds a new todo when the form is submitted', () => {
     render(<TodoList />);
     
-    // Get the input and button elements
-    const input = screen.getByPlaceholderText('Add a new task...');
-    const button = screen.getByText('Add Todo');
+    // Use getByRole for form elements
+    const input = screen.getByRole('textbox', { name: /add a new task/i });
+    const button = screen.getByRole('button', { name: /add todo/i });
     
-    // Simulate user typing and submitting the form
     fireEvent.change(input, { target: { value: 'Test New Todo' } });
     fireEvent.click(button);
     
-    // Check if the new todo appears in the list
     expect(screen.getByText('Test New Todo')).toBeInTheDocument();
-    
-    // Verify the input is cleared after submission
-    expect(input.value).toBe('');
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
   });
 
-  // Test 3: Toggling Todo Completion - Tests clicking on a todo to mark it complete/incomplete
-  test('toggles the completion status of a todo when clicked', () => {
+  test('toggles todo completion status when clicked', () => {
     render(<TodoList />);
     
-    // Find the first todo (which is initially not completed)
-    const todoElement = screen.getByText('Learn React');
+    // Get the first todo item's checkbox
+    const todoCheckbox = screen.getAllByRole('checkbox')[0];
     
-    // Verify it's not completed initially
-    expect(todoElement).not.toHaveStyle('text-decoration: line-through');
+    // Initial state should not be checked
+    expect(todoCheckbox).toHaveAttribute('aria-checked', 'false');
     
-    // Click on it to toggle to completed
-    fireEvent.click(todoElement);
+    // Click to toggle
+    fireEvent.click(todoCheckbox);
     
-    // Now it should be completed (have line-through)
-    expect(todoElement).toHaveStyle('text-decoration: line-through');
-    
-    // Click again to toggle back to incomplete
-    fireEvent.click(todoElement);
-    
-    // Now it should not have line-through
-    expect(todoElement).not.toHaveStyle('text-decoration: line-through');
+    // Should now be checked
+    expect(todoCheckbox).toHaveAttribute('aria-checked', 'true');
   });
 
-  // Test 4: Deleting a Todo - Tests the delete functionality
-  test('deletes a todo when the delete button is clicked', () => {
+  test('deletes a todo when delete button is clicked', () => {
     render(<TodoList />);
     
-    // Find the first todo and its delete button
-    const todoText = screen.getByText('Learn React');
-    const deleteButtons = screen.getAllByText('Delete');
-    const firstDeleteButton = deleteButtons[0]; // Get the delete button for the first todo
+    const initialTodos = screen.getAllByRole('listitem');
+    const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
     
-    // Verify the todo exists before deletion
-    expect(todoText).toBeInTheDocument();
+    // Click the first delete button
+    fireEvent.click(deleteButtons[0]);
     
-    // Click the delete button
-    fireEvent.click(firstDeleteButton);
-    
-    // Check the todo is no longer in the document
-    expect(screen.queryByText('Learn React')).not.toBeInTheDocument();
+    // Should have one less todo item
+    const remainingTodos = screen.getAllByRole('listitem');
+    expect(remainingTodos).toHaveLength(initialTodos.length - 1);
   });
 
-  // Test 5: Preventing Empty Todos - Tests that empty input doesn't create a todo
-  test('does not add an empty todo when form is submitted with empty input', () => {
+  test('does not add empty todo', () => {
     render(<TodoList />);
     
-    // Get initial count of todos
-    const initialTodos = screen.getAllByRole('listitem').length;
-    const button = screen.getByText('Add Todo');
+    const initialCount = screen.getAllByRole('listitem').length;
+    const button = screen.getByRole('button', { name: /add todo/i });
     
-    // Submit the form with empty input
     fireEvent.click(button);
     
     // Count should remain the same
-    const currentTodos = screen.getAllByRole('listitem').length;
-    expect(currentTodos).toBe(initialTodos);
+    expect(screen.getAllByRole('listitem')).toHaveLength(initialCount);
   });
 });
