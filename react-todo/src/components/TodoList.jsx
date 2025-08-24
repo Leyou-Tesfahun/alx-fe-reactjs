@@ -28,9 +28,9 @@ const TodoList = () => {
   };
 
   return (
-    <div className="todo-list">
+    <div className="todo-list" data-testid="todo-list">
       <AddTodoForm onAdd={addTodo} />
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <ul style={{ listStyle: 'none', padding: 0 }} role="list">
         {todos.map(todo => (
           <TodoItem
             key={todo.id}
